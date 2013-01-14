@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Elections 2013 Map</title>
+        <link rel="stylesheet" href="http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css">
+        <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+        <script>
+            var map = mapbox.map('map');
+        </script>
+    </head>
+    <body>
+        <h1>Elections 2013 Map</h1>
+        
+        <div id='map' style='width:500px;height:400px;'></div>
+        <script>
+            mapbox.auto('map', 'http://a.tiles.mapbox.com/v3/yuvadm.map-8zhg56t1.jsonp');
+        </script>
+    </body>
+</html>
