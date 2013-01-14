@@ -4,7 +4,9 @@
         <meta charset="utf8">
         <title>Elections 2013 Map</title>
         <link rel="stylesheet" href="http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css">
-        <script src='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js'></script>
+        <script src="http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+        <script src="cities.json"></script>
     </head>
     <body>
         <h1>Elections 2013 Map</h1>
@@ -19,14 +21,18 @@
             map.addLayer(markerLayer);
             map.centerzoom({lat: 31.54, lon: 35.23}, 7);
 
-            markerLayer.add_feature({
-                geometry: { coordinates: [35.2, 31.5] },
-                properties: {
-                    'marker-color': '#000',
-                    'marker-symbol': 'star-stroked',
-                    title: 'Example Marker',
-                    description: 'This is a single marker.'
-                }
+            _.each(cities, function(v, k){
+                if (v.status == "OK") {
+                    var location = v.results[0].geometry.location;
+                    markerLayer.add_feature({
+                        geometry: { coordinates: [location.lng,  location.lat] },
+                        properties: {
+                            // 'marker-color': '#000',
+                            // 'marker-symbol': 'star-stroked',
+                            title: k
+                        }
+                    });
+                };
             });
         </script>
     </body>
